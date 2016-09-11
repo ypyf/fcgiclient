@@ -23,18 +23,17 @@ func main() {
 
 	fcgi, err := fastcgi.Dial("tcp", "127.0.0.1:9000")
 	if err != nil {
-		log.Println("err:", err)
-		return
+		log.Fatalln(err)
 	}
 
 	resp, err := fcgi.Get(env)
 	if err != nil {
-		log.Println("err:", err)
+		log.Fatalln(err)
 	}
 
 	content, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("err:", err)
+		log.Fatalln(err)
 	}
 	log.Println("content:", string(content))
 }
